@@ -21,6 +21,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AuthService } from './core/auth.service';
 import { AdminAuthGuard } from './core/admin-auth-guard.service';
 import { AuthGuard } from './core/auth-guard.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AuthGuard } from './core/auth-guard.service';
     NgbDropdownConfig, 
     AuthService,
     AuthGuard,
-    AdminAuthGuard
+    AdminAuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
