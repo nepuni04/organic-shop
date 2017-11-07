@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from './auth.service';
+import 'rxjs/add/operator/map';
+import { User } from '../common/user';
+
 
 @Injectable()
 export class AdminAuthGuard implements CanActivate {
+
+  constructor(private auth: AuthService,
+    private router: Router) { }
+
   canActivate(route: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot): Observable<boolean> {
-    
-      throw new Error("Method not implemented.");
+      return this.auth.appUser$.map(user => user.isAdmin );
   }
-
-  constructor() { }
-
+  
 }

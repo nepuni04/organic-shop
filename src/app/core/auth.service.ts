@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
-import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
+
+import { UserService } from '../services/user.service';
+import { User } from '../common/user';
 
 @Injectable()
 export class AuthService {
   user$: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth, 
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router) {
 
@@ -34,6 +40,17 @@ export class AuthService {
         console.log("Successfully logged out"); 
         this.router.navigate(['/login']);
       });
+  }
+
+  get appUser$(): Observable<User> {
+    return this.user$.switchMap(user => {
+      if(user) {
+        return this.userService.get(user.uid);
+      } 
+      else {
+        return Observable.of(null);
+      }  
+    });
   }
 
   private handleError(error) {
