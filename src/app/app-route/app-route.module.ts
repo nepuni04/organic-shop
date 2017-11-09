@@ -14,7 +14,7 @@ import { AdminOrdersComponent } from '../admin/admin-orders/admin-orders.compone
 import { AdminProductFormComponent } from '../admin/admin-product-form/admin-product-form.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
