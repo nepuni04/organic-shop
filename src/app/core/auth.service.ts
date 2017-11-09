@@ -28,7 +28,7 @@ export class AuthService {
 
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider)
       .then(() => {
-        console.log("Successfully logged in");
+        //console.log("Successfully logged in");
         this.router.navigateByUrl(localStorage.getItem('returnUrl'));
       })
       .catch((error) => this.handleError(error));
@@ -37,7 +37,7 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut()
       .then(() => { 
-        console.log("Successfully logged out"); 
+        //console.log("Successfully logged out"); 
         this.router.navigate(['/login']);
       });
   }

@@ -14,7 +14,7 @@ export class UserService {
       name: user.displayName,
       email: user.email
     })
-    .then(() => console.log("User successfully updated"));
+    //.then(() => console.log("User successfully updated"));
   }
 
   get(id: string): Observable<User> {
