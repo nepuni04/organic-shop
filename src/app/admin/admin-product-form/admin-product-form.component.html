@@ -13,10 +13,11 @@
         <label for="price">Price</label>
         <div class="input-group">
           <div class="input-group-addon">$</div>
-          <input #price="ngModel" [(ngModel)]="product.price" name="price" type="text" id="price" class="form-control" required>
+          <input #price="ngModel" [(ngModel)]="product.price" name="price" type="number" id="price" class="form-control" required minProductPrice>
         </div>
         <div class="alert alert-danger" *ngIf="price.dirty && price.invalid">
-          Price is required
+          <div *ngIf="price.errors?.required">Price is required</div>
+          <div *ngIf="price.errors?.minProductPrice">Minimum price should be greater than 0</div>
         </div>        
       </div>
       <div class="form-group">
@@ -32,9 +33,10 @@
       </div>
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" type="text" id="imageUrl" class="form-control" required>
+        <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" type="text" id="imageUrl" class="form-control" required httpUrlValidator>
         <div class="alert alert-danger" *ngIf="imageUrl.dirty && imageUrl.invalid">
-          Image URL is required
+          <div *ngIf="imageUrl.errors?.required">Image URL is required</div>
+          <div *ngIf="imageUrl.errors?.httpUrlValidator">Please enter valid image URL</div>
         </div>        
       </div>  
       <div class="form-group">
@@ -46,11 +48,11 @@
   
   </div>
   <div class="col-md-6">
-    <div class="card">
-        <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl">
+    <div class="card" *ngIf="product.title">
+        <img class="card-img-top" [src]="product.imageUrl" *ngIf="imageUrl.valid">
         <div class="card-body">
           <h4 class="card-title">{{ product.title }}</h4>
-          <p class="card-text">{{ product.price | currency:'USD':true }}</p>
+          <p class="card-text" *ngIf="price.valid">{{ product.price | currency:'USD':true }}</p>
         </div>
       </div>
   </div>

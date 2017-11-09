@@ -26,6 +26,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component';
 import { FormsModule } from '@angular/forms';
+import { MinPriceValidatorDirective } from './validators/min-price-validator.directive';
+import { HttpUrlValidatorDirective } from './validators/http-url-validator.directive';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FormsModule } from '@angular/forms';
     AdminOrdersComponent,
     AdminProductsComponent,
     NavigationComponent,
-    AdminProductFormComponent
+    AdminProductFormComponent,
+    MinPriceValidatorDirective,
+    HttpUrlValidatorDirective
   ],
   imports: [
     BrowserModule,
