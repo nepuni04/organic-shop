@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { NgbModule, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { DataTableModule } from 'angular-4-data-table';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -57,7 +58,8 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    DataTableModule
   ],
   providers: [ 
     NgbDropdownConfig, 
