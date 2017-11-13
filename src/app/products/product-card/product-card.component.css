@@ -3,4 +3,8 @@
 }
 .card {
     margin-bottom: 20px;
+    max-height: 300px;
+}
+.card-img-top {
+    overflow: hidden;
 }
