@@ -20,14 +20,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.subscription = this.productService.getAll().switchMap(products => { 
       this.products = products;
       return this.route.queryParamMap;
     })
     .subscribe(params => {
       this.category = params.get("category");
-      //console.log(this.category);
       this.filteredProducts = !this.category ? this.products :
         this.products.filter(product => product.category === this.category);
     });

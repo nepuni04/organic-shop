@@ -30,6 +30,7 @@ export class AuthService {
       .then(() => {
         //console.log("Successfully logged in");
         this.router.navigateByUrl(localStorage.getItem('returnUrl'));
+        localStorage.removeItem('returnUrl');
       })
       .catch((error) => this.handleError(error));
   }

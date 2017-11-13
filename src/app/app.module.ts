@@ -31,6 +31,7 @@ import { MinPriceValidatorDirective } from './validators/min-price-validator.dir
 import { HttpUrlValidatorDirective } from './validators/http-url-validator.directive';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService, 
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
