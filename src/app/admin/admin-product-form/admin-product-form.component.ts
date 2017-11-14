@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product } from '../../common/product';
 import { CategoryService } from '../../services/category.service';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/take';
 import { ProductService } from '../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Product } from '../../common/model/product';
 
 @Component({
   selector: 'app-admin-product-form',

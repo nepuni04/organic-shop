@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Product } from '../common/product';
 import { Observable } from 'rxjs/Observable';
+import { Product } from '../common/model/product';
 
 @Injectable()
 export class ProductService {

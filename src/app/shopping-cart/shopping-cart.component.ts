@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { CartItem } from '../common/cart-item';
 import { Observable } from 'rxjs/Observable';
-import { ShoppingCart } from '../common/shopping-cart';
 import { Subscription } from 'rxjs/Subscription';
+import { ShoppingCart } from '../common/model/shopping-cart';
 
 @Component({
   selector: 'app-shopping-cart',

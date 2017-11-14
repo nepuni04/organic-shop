@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CartItem } from '../common/cart-item';
-import { Product } from '../common/product';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import { ShoppingCart } from '../common/shopping-cart';
-import { ShoppingCartFirebase } from '../common/shopping-cart-firebase';
+import { ShoppingCart } from '../common/model/shopping-cart';
+import { ShoppingCartFirebase } from '../common/model/shopping-cart-firebase';
+import { Product } from '../common/model/product';
+import { CartItem } from '../common/model/cart-item';
 
 @Injectable()
 export class ShoppingCartService {
@@ -16,7 +16,7 @@ export class ShoppingCartService {
     let cartId = await this.findOrCreateCartId(); 
     return this.db.object(this.baseUrl + '/' + cartId).valueChanges()
       .map((x: ShoppingCartFirebase) => {
-        if(!x) return new ShoppingCart(null);
+        if(!x) return new ShoppingCart();
         return new ShoppingCart(x.items)
       });
   }

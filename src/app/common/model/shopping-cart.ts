@@ -4,7 +4,7 @@ import { ShoppingCartMap } from "./shopping-cart-firebase";
 export class ShoppingCart {
   items: CartItem[] = [];
 
-  constructor(private cartMap: ShoppingCartMap[]) {
+  constructor(private cartMap?: ShoppingCartMap[]) {
     if(!this.cartMap) return;    
     
     for(let key in this.cartMap) {

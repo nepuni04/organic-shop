@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { UserService } from '../services/user.service';
-import { User } from '../common/user';
 import { Subscription } from 'rxjs/Subscription';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Observable } from 'rxjs/Observable';
-import { ShoppingCart } from '../common/shopping-cart';
+import { User } from '../common/model/user';
+import { ShoppingCart } from '../common/model/shopping-cart';
 
 @Component({
   selector: 'app-navigation',
