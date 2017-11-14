@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Product } from '../../common/product';
+import { Observable } from 'rxjs/Observable';
+import { ShoppingCart } from '../../common/shopping-cart';
 
 @Component({
   selector: 'product-card',
@@ -8,7 +10,8 @@ import { Product } from '../../common/product';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
-  @Input('product') product;
+  @Input('product') product: Product;
+  @Input('cart') cart: ShoppingCart;
   
   constructor(private cartService: ShoppingCartService) { }
 
@@ -16,7 +19,4 @@ export class ProductCardComponent {
     this.cartService.addToCart(this.product);
   }
 
-  removeFromCart() {
-    this.cartService.removeFromCart(this.product)
-  }
 }

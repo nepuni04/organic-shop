@@ -15,11 +15,10 @@ export class ShoppingCartService {
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.findOrCreateCartId(); 
     return this.db.object(this.baseUrl + '/' + cartId).valueChanges()
-      .map((x: ShoppingCartFirebase) => { 
-        if(!x) return null;
-        return new ShoppingCart(x.items);
+      .map((x: ShoppingCartFirebase) => {
+        if(!x) return new ShoppingCart(null);
+        return new ShoppingCart(x.items)
       });
-        
   }
 
   addToCart(product: Product) {
@@ -30,9 +29,17 @@ export class ShoppingCartService {
     this.updateItem(product, -1);
   }
 
+  async getItemQuantity(id: string): Promise<Observable<number>> {
+    let cartId = await this.findOrCreateCartId();
+    return this.getItem(cartId, id).valueChanges().map((item: CartItem) => {
+      let quantity =  item ? item.quantity : 0;
+      return quantity;
+    })
+  }
+
   async clearCart() {
     let cartId = await this.findOrCreateCartId();
-    return this.db.list(this.baseUrl + '/' + cartId).remove();
+    this.db.list(this.baseUrl + '/' + cartId).remove();
   }
 
   private async updateItem(product: Product, change: number) {

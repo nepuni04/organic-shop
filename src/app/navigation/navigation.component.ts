@@ -21,7 +21,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.subscription = this.auth.appUser$.subscribe(user => this.user = user);
-    this.cart$ = await this.cartService.getCart()
+    this.cart$ = await this.cartService.getCart();
   }
 
   logout() {

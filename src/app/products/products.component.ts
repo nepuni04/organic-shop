@@ -4,6 +4,9 @@ import { Product } from '../common/product';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import { ActivatedRoute } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ShoppingCart } from '../common/shopping-cart';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-products',
@@ -15,11 +18,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
   filteredProducts: Product[] = [];
   subscription: Subscription;
   category: string;
+  cart$: Observable<ShoppingCart>;
   
   constructor(private productService: ProductService, 
+    private cartService: ShoppingCartService,
     private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.cart$ = await this.cartService.getCart();
+
     this.subscription = this.productService.getAll().switchMap(products => { 
       this.products = products;
       return this.route.queryParamMap;

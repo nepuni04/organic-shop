@@ -8,8 +8,16 @@ export class ShoppingCart {
     if(!this.cartMap) return;    
     
     for(let key in this.cartMap) {
-      this.items.push(new CartItem(this.cartMap[key]))
+      let item = this.cartMap[key];
+      this.items.push(new CartItem({ $key: key, ...item }))
     }
+  }
+
+  getItemQuantity(productId: string): number {
+    if(!this.cartMap) return 0;
+    
+    let item = this.cartMap[productId];
+    return item ? item.quantity : 0;
   }
 
   getTotalPrice() {
