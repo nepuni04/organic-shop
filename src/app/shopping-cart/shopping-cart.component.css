@@ -2,7 +2,17 @@
     height: 80px;
     width: 80px;
     border-radius: 100%;
+    margin-right: 20px;
 }
 .price {
-    width: 100px;
+    width: 30%;
+    padding-top: 20px;
+}
+.title {
+    width: 40%;
+    padding-top: 20px;
+}
+.quantity {
+    width: 30%;
+    padding-top: 20px;
 }
