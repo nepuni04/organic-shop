@@ -12,6 +12,7 @@ import { AdminAuthGuard } from '../core/admin-auth-guard.service';
 import { AdminProductsComponent } from '../admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from '../admin/admin-orders/admin-orders.component';
 import { AdminProductFormComponent } from '../admin/admin-product-form/admin-product-form.component';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -26,6 +27,11 @@ const routes: Routes = [
   { 
     path: 'order-success/:id', 
     component: OrderSuccessComponent, 
+    canActivate: [ AuthGuard ] 
+  },
+  { 
+    path: 'order-detail/:id', 
+    component: OrderDetailComponent, 
     canActivate: [ AuthGuard ] 
   },
   { 

@@ -1,0 +1,27 @@
+<div class="row col-md-10" *ngIf="order$ | async as order">
+  <div class="col-md-6">
+    <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Shipping Detail</h4>
+      <ul class="list-group list-group-flush" >
+        <li class="list-group-item">Name: {{order.shipping.name}}</li>
+        <li class="list-group-item">Address: {{order.shipping.address1}}</li>
+        <li class="list-group-item">City: {{order.shipping.city}}</li>
+      </ul>
+    </div>
+  </div>
+  </div>  
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Order Summary</h4>
+        <ul class="list-group list-group-flush" >
+          <li *ngFor="let item of order.items" class="list-group-item">
+            {{ item.quantity }} x {{ item.title }}
+            <div class="float-right">{{ (item.price * item.quantity)| currency:'USD':true }}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

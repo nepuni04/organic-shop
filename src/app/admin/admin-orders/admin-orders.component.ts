@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../../common/model/order';
+import { Observable } from 'rxjs/Observable';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-admin-orders',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-orders.component.css']
 })
 export class AdminOrdersComponent implements OnInit {
+  orders$: Observable<Order[]>;
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
+    this.orders$ = this.orderService.geAllOrders();
   }
 
 }

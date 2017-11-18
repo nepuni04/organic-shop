@@ -3,6 +3,7 @@ import { ShoppingCart } from "./shopping-cart";
 export class Order {
   items = [];
   placedDate;
+  $key: string
 
   constructor(public userId: string, public shipping: any, cart: ShoppingCart) {
     this.placedDate = new Date().getTime();
