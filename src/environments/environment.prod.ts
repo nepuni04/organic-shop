@@ -7,5 +7,5 @@ export const environment = {
     projectId: "organic-shop-c8ce5",
     storageBucket: "organic-shop-c8ce5.appspot.com",
     messagingSenderId: "66496992309"
-  }
+  },
 };
