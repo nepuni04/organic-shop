@@ -1,21 +1,21 @@
 <h2>Orders</h2>
 <div *ngIf="orders$ | async as orders">
-  <div class="row col-lg-8 col-md-10">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Order Date</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders">
-          <td>{{ order.shipping.name }}</td>
-          <td>{{ order.placedDate | date:'medium' }}</td>
-          <td><a [routerLink]="['/order-detail', order.$key]">View</a></td>
-        </tr>
-      </tbody>
-    </table>  
-  </div>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Order Date</th>
+        <th>Address</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.shipping.name }}</td>
+        <td>{{ order.shipping.address1 }}, {{ order.shipping.address2 }}</td>
+        <td>{{ order.placedDate | date:'medium' }}</td>
+        <td><a [routerLink]="['/order-detail', order.$key]">View</a></td>
+      </tr>
+    </tbody>
+  </table>  
 </div>
