@@ -4,6 +4,7 @@ import { SharedModule } from 'shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -16,6 +17,9 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   ],
   exports: [
     NavigationComponent
+  ],
+  providers: [
+    NgbDropdownConfig
   ]
 })
 export class CoreModule { }

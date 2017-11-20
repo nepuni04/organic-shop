@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgbDropdownConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular-4-data-table/dist';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -48,7 +48,6 @@ import { MinPriceValidatorDirective } from './validators/min-price-validator.dir
     RouterModule,
   ],
   providers: [
-    NgbDropdownConfig,
     AuthService,
     AuthGuard,
     UserService,
