@@ -11,7 +11,7 @@ import { Order } from '../../model/order';
 })
 export class OrderDetailComponent implements OnInit {
   orderId: string;
-  order$: Observable<Order>;
+  order$;
   
   constructor(private route: ActivatedRoute, private orderService: OrderService) { }
 

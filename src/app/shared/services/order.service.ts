@@ -37,7 +37,11 @@ export class OrderService {
     });
   }
 
-  getOrderById(orderId: string): Observable<Order> {
+  getOrderById(orderId: string) {
     return this.db.object('/orders/' + orderId).valueChanges();
+  }
+
+  deleteOrder(id: string) {
+    return this.db.list('/orders/' + id).remove();
   }
 }

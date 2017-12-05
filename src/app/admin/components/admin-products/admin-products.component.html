@@ -1,42 +1,39 @@
-<p>
-  <button class="btn btn-primary" routerLink="/admin/products/new">New Product</button>
-</p>
 
-<p>
-  <input type="text" class="form-control" 
+<div class="row">
+  <div class="col-6 col-lg-8">
+    <button class="btn btn-primary" routerLink="/admin/products/new">New Product</button>
+  </div>
+  <div class="col-6 col-lg-4"><input type="text" class="form-control" 
       placeholder="Search Title" 
       #query (keyup)="search(query.value)">
-</p>
+  </div>    
+</div>
 
-<data-table
-  [items]="items"
-  [itemCount]="itemCount"
-  (reload)="reloadItems($event)">
+<br>
 
-  <data-table-column
-    [property]="'title'"
-    [header]="'Title'"
-    [sortable]="true"
-    [resizable]="true">
-  </data-table-column>
+<ngx-datatable id="data-table"
+  class="material striped"
+  [rows]="rows"
+  [loadingIndicator]="loadingIndicator"
+  [columnMode]="'force'"
+  [headerHeight]="40"
+  [footerHeight]="40"
+  [limit]="10"
+  [rowHeight]="'auto'"
+  [reorderable]="reorderable"
+>
 
-  <data-table-column
-    [property]="'price'"
-    [header]="'Price'"
-    [sortable]="true"
-    [resizable]="true"
-  >
-    <ng-template #dataTableCell let-item="item">
-      <span>{{ item.price | currency:'USD':true }}</span>
+  <ngx-datatable-column prop="title"></ngx-datatable-column>
+  <ngx-datatable-column prop="category"></ngx-datatable-column>
+  <ngx-datatable-column prop="price">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <span>{{value | currency:'USD':'$'}}</span>
     </ng-template>
-  </data-table-column>  
-  
-  <data-table-column [property]="'$key'">
-    <ng-template #dataTableCell let-item="item">
-      <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="View">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <a [routerLink]="['/admin/products', row['$key']]">View</a>
     </ng-template>
-  </data-table-column>
+  </ngx-datatable-column>
 
-</data-table>
-
-<div id="data-table"></div>
+</ngx-datatable>

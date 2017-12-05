@@ -14,7 +14,10 @@
         <td>{{ order.shipping.name }}</td>
         <td>{{ order.shipping.address1 }}, {{ order.shipping.address2 }}</td>
         <td>{{ order.placedDate | date:'medium' }}</td>
-        <td><a [routerLink]="['/order-detail', order.$key]">View</a></td>
+        <td>
+          <a [routerLink]="['/order-detail', order.$key]" class="btn btn-sm btn-primary">View</a>
+          <button (click)="deleteOrder(order)" class="btn btn-sm btn-danger">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>  

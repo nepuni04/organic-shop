@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from 'shared/model/order';
 import { Observable } from 'rxjs/Observable';
+import { Order } from 'shared/model/order';
 import { OrderService } from 'shared/services/order.service';
 
 @Component({
@@ -17,4 +17,9 @@ export class AdminOrdersComponent implements OnInit {
     this.orders$ = this.orderService.geAllOrders();
   }
 
+  deleteOrder(order: Order) {
+    this.orderService.deleteOrder(order.$key).then(data => {
+      console.log(data);
+    });
+  }
 }

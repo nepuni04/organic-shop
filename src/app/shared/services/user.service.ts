@@ -17,7 +17,7 @@ export class UserService {
     //.then(() => console.log("User successfully updated"));
   }
 
-  get(id: string): Observable<User> {
+  get(id: string) {
     return this.db.object('/users/' + id).valueChanges();
   }
 }

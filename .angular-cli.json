@@ -21,7 +21,7 @@
       "styles": [
         "styles.scss"
       ],
-      "scripts": ["../node_modules/angular-4-data-table/dist/index.js"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

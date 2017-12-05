@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 
 import { environment } from '../environments/environment';
@@ -21,6 +22,8 @@ import { ShoppingModule } from './shopping/shopping.module';
     ShoppingModule,
     AppRouteModule,
     CoreModule,
+    BrowserAnimationsModule,
+    // NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),    
   ],
   bootstrap: [AppComponent]
