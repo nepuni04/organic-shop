@@ -1,0 +1,56 @@
+<h3>Sign Up Form</h3>
+<form #f="ngForm" (ngSubmit)="signupWithEmail(f.value)">
+  <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      ngModel 
+      name="email"
+      #email="ngModel" 
+      type="email" 
+      class="form-control"
+      required
+      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+      id="email">
+    <div class="alert alert-danger" *ngIf="email.dirty && email.invalid">
+      <div *ngIf="email.errors?.required">Email is required</div>
+      <div *ngIf="email.errors?.pattern">Please enter valid email</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      ngModel
+      name="username"
+      #username="ngModel" 
+      type="text" 
+      class="form-control" 
+      required
+      id="username">
+    <div class="alert alert-danger" *ngIf="username.dirty && username.invalid">
+      <div *ngIf="username.errors?.required">Username is required</div>  
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      ngModel
+      name="password"
+      #password="ngModel" 
+      type="password" 
+      class="form-control" 
+      required
+      minlength="6"
+      id="password">
+    <div class="alert alert-danger" *ngIf="password.dirty && password.invalid">
+      <div *ngIf="password.errors?.required">Password is required</div>
+      <div *ngIf="password.errors?.minlength">Password should be minimum 6 characters</div>    
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" [disabled]="f.invalid">Sign Up</button>
+  </div>
+</form>
+

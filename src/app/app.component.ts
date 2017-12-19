@@ -14,9 +14,9 @@ export class AppComponent implements OnDestroy {
 
   constructor(private userService: UserService, private auth: AuthService) {
     this.subscription = this.auth.user$.subscribe((user) => {
-      if(user) {
-        this.userService.save(user)
-      }
+      // if(user) {
+      //   this.userService.save(user)
+      // }
     })
   }
   

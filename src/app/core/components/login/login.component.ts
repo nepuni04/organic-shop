@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../shared/services/auth.service';
+import { Component } from '@angular/core';
+import { AuthService } from 'shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  newUser = false;
 
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 
-  ngOnInit() {
+  loginWithGoogle() {
+    this.auth.loginWithGoogle();
   }
 
-  login() {
-    this.auth.login();
+  toggleForm() {
+    this.newUser = !this.newUser;
   }
 }

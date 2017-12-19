@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'shared/services/product.service';
 import { Observable } from 'rxjs/Observable';
@@ -13,12 +14,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   products: Product[] = [];
   rows: Product[] = [];
-  // columns = [
-  //   { prop: 'title' },
-  //   { prop: 'category' },
-  //   { prop: 'price' },
-  //   { prop: 'Company' }
-  // ];
   
   constructor(private productService: ProductService) { }
 

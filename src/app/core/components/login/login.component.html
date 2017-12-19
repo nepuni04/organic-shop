@@ -1,5 +1,21 @@
 <ng-container *ngIf="!(auth.user$ | async)">
   <button class="btn btn-primary"
-    (click)="login()">Login with Google
+    (click)="loginWithGoogle()">Login with Google
   </button>
+
+  <div class="row">
+    <div class="col-sm-10 col-md-8 col-lg-6" id="form">
+
+      <ng-container *ngIf="!newUser; else signup">
+        <app-login-form></app-login-form>
+        <p (click)="toggleForm()">New User?</p>    
+      </ng-container>
+      
+      <ng-template #signup>
+        <app-signup-form ></app-signup-form>
+        <p (click)="toggleForm()">Have Account?</p>
+      </ng-template>
+
+    </div>
+  </div>
 </ng-container>

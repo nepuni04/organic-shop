@@ -5,6 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     HomeComponent,
     NavigationComponent,
-    LoginComponent
+    LoginComponent,
+    LoginFormComponent,
+    SignupFormComponent
   ],
   exports: [
     NavigationComponent

@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CategoryService } from 'shared/services/category.service';
-import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/take';
-import { ProductService } from 'shared/services/product.service';
-import { Router, ActivatedRoute } from '@angular/router';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'shared/model/product';
+import { CategoryService } from 'shared/services/category.service';
+import { ProductService } from 'shared/services/product.service';
 
 @Component({
   selector: 'app-admin-product-form',
@@ -14,7 +14,7 @@ import { Product } from 'shared/model/product';
 export class AdminProductFormComponent implements OnInit, OnDestroy {
   categories$;
   id: string;
-  product = {};
+  product = <Product> {};
   
   constructor(private categoryService: CategoryService,
     private router: Router, 
@@ -26,7 +26,7 @@ export class AdminProductFormComponent implements OnInit, OnDestroy {
 
     this.id = this.route.snapshot.paramMap.get("id");
     if(!this.id) return;
-    this.productService.get(this.id).take(1).subscribe(product => this.product = product);        
+    this.productService.get(this.id).take(1).subscribe(product => this.product = <Product> product);        
   }
 
   save(product: Product) {

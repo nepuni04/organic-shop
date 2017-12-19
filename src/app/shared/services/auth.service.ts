@@ -1,13 +1,14 @@
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/switchMap';
+
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/observable/of';
 
+import { User } from './../model/user';
 import { UserService } from './user.service';
-import { User } from '../model/user';
 
 @Injectable()
 export class AuthService {
@@ -21,41 +22,49 @@ export class AuthService {
     this.user$ = this.afAuth.authState;
   }
 
-  login() {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    console.log("Return Url", returnUrl);
-    localStorage.setItem('returnUrl', returnUrl);
+  get returnUrl() {
+    return this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+  }
 
+  loginWithGoogle() {
+    localStorage.setItem('returnUrl', this.returnUrl);
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider)
-      .then(() => {
-        //console.log("Successfully logged in");
+      .then(res => {
+        this.userService.save(res.user);
         this.router.navigateByUrl(localStorage.getItem('returnUrl'));
         localStorage.removeItem('returnUrl');
       })
       .catch((error) => this.handleError(error));
   }
 
+  loginWithEmail(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
+      this.router.navigateByUrl(this.returnUrl);
+    })
+  }
+
+  signupWithEmail(email: string, password: string, username: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(data => {
+      let user = { displayName: username, email: data.email, uid: data.uid };
+      this.userService.save(user);
+      this.router.navigateByUrl(this.returnUrl);
+    });
+  }
+
   logout() {
-    this.afAuth.auth.signOut()
-      .then(() => { 
-        //console.log("Successfully logged out"); 
-        this.router.navigate(['/login']);
-      });
+    this.afAuth.auth.signOut().then(() => this.router.navigate(['/login']));
   }
 
   get appUser$(): Observable<User> {
     return this.user$.switchMap(user => {
-      if(user) {
+      if(user)
         return this.userService.get(user.uid);
-      } 
-      else {
+      else
         return Observable.of(null);
-      }  
     });
   }
 
   private handleError(error) {
     console.error("Error: ", error);
   }
-
 }
