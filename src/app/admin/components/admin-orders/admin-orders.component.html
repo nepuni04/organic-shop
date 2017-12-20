@@ -1,24 +1,36 @@
-<h2>Orders</h2>
+<h3>Orders</h3>
 <div *ngIf="orders$ | async as orders">
-  <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Order Date</th>
-        <th>Address</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.shipping.name }}</td>
-        <td>{{ order.shipping.address1 }}, {{ order.shipping.address2 }}</td>
-        <td>{{ order.placedDate | date:'medium' }}</td>
-        <td>
-          <a [routerLink]="['/order-detail', order.$key]" class="btn btn-sm btn-primary">View</a>
-          <button (click)="deleteOrder(order)" class="btn btn-sm btn-danger">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>  
+  <ng-container *ngIf="orders.length > 0; else orderInfo">  
+    <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Order Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.shipping.name }}</td>
+            <td>{{ order.shipping.address1 }}, {{ order.shipping.address2 }}</td>
+            <td>{{ order.placedDate | date:'medium' }}</td>
+            <td>
+              <div class="btn-group">
+                <a [routerLink]="['/order-detail', order.$key]" class="btn btn-sm btn-primary">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </a>
+                <button (click)="deleteOrder(order)" class="btn btn-sm btn-danger">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>  
+  </ng-container>  
 </div>
+
+<ng-template #orderInfo>
+  <p class="alert alert-info">There are no orders currently</p>
+</ng-template>

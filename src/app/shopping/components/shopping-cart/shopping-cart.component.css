@@ -2,17 +2,29 @@
     height: 80px;
     width: 80px;
     border-radius: 100%;
-    margin-right: 20px;
 }
 .price {
     width: 30%;
-    padding-top: 20px;
 }
 .title {
-    width: 40%;
-    padding-top: 20px;
+    width: 30%;
 }
 .quantity {
     width: 30%;
-    padding-top: 20px;
+}
+
+@media screen and (max-width: 767px){
+    .price {
+        width: 20%;
+    }
+    .quantity {
+        width: 40%;
+    }
+    .title {
+        width: 40%;
+    }
+    .thumbnail {
+        height: 60px;
+        width: 60px;
+    }
 }
